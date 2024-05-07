@@ -37,29 +37,29 @@ def count_chars(file):
 
 
 if args.filename == "file":
-    pass
-    # i need to figure out how to reformat this as a stdin-able thing...
+    file = stdin.buffer.read()
 else:
     with open(args.filename, "rb") as f:
         file = f.read()
-        answer = ""
-        spacing = " "
-        if args.bytes:
-            answer += count_bytes(file) + spacing
-        if args.lines:
-            answer += count_lines(file) + spacing
-        if args.words:
-            answer += count_words(file) + spacing
-        if args.chars:
-            answer += count_chars(file) + spacing
 
-        if answer == "":
-            answer = (
-                count_lines(file)
-                + spacing
-                + count_words(file)
-                + spacing
-                + count_bytes(file)
-                + spacing
-            )
-        print(f"{answer}{args.filename}")
+answer = ""
+spacing = " "
+if args.bytes:
+    answer += count_bytes(file) + spacing
+if args.lines:
+    answer += count_lines(file) + spacing
+if args.words:
+    answer += count_words(file) + spacing
+if args.chars:
+    answer += count_chars(file) + spacing
+
+if answer == "":
+    answer = (
+        count_lines(file)
+        + spacing
+        + count_words(file)
+        + spacing
+        + count_bytes(file)
+        + spacing
+    )
+print(f"{answer}{args.filename}")
